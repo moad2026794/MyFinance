@@ -1,10 +1,10 @@
-name: Build Mizaniati APK
+name: Build My Finance APK
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - "Mizaniati-Complete-v2.zip"
+      - "Mizaniati-Complete-v2-FIXED.zip"
       - ".github/workflows/build-apk.yml"
 
 jobs:
@@ -22,7 +22,9 @@ jobs:
 
       - name: Extract Android project
         run: |
-          unzip -q Mizaniati-Complete-v2.zip -d extracted
+          test -f Mizaniati-Complete-v2-FIXED.zip
+          unzip -q Mizaniati-Complete-v2-FIXED.zip -d extracted
+          test -d extracted/Mizaniati-Complete
           cp -R extracted/Mizaniati-Complete/. .
 
       - name: Set up Gradle
@@ -36,6 +38,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Mizaniati-debug-APK
+          name: My-Finance-debug-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
