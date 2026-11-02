@@ -20,11 +20,9 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Extract Android project
+      - name: Extract fixed Android project
         run: |
-          test -f Mizaniati-Complete-v2-FIXED.zip
           unzip -q Mizaniati-Complete-v2-FIXED.zip -d extracted
-          test -d extracted/Mizaniati-Complete
           cp -R extracted/Mizaniati-Complete/. .
 
       - name: Set up Gradle
